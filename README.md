@@ -1,57 +1,63 @@
-# With Docker
+# Deployment Ready MENN Stack
 
-This examples shows how to use Docker with Next.js based on the [deployment documentation](https://nextjs.org/docs/deployment#docker-image). Additionally, it contains instructions for deploying to Google Cloud Run. However, you can use any container-based deployment host.
+This is a deployment ready Dockerized MENN Stack with Typescript
 
-## How to use
+## Built with
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+- Docker
+- MongoDB
+- NextJS
+- Typescript
 
-```bash
-npx create-next-app --example with-docker nextjs-docker
-# or
-yarn create next-app --example with-docker nextjs-docker
-```
+## Getting Started
 
-## Using Docker
+### Pre-requisites
 
-1. [Install Docker](https://docs.docker.com/get-docker/) on your machine.
-1. Build your container: `docker build -t nextjs-docker .`.
-1. Run your container: `docker run -p 3000:3000 nextjs-docker`.
+docker-compose
 
-You can view your images created with `docker images`.
+https://docs.docker.com/compose/
 
-## Deploying to Google Cloud Run
+docker
 
-The `start` script in `package.json` has been modified to accept a `PORT` environment variable (for compatibility with Google Cloud Run).
+https://www.docker.com/
 
-1. Install the [Google Cloud SDK](https://cloud.google.com/sdk/docs/install) so you can use `gcloud` on the command line.
-1. Run `gcloud auth login` to log in to your account.
-1. [Create a new project](https://cloud.google.com/run/docs/quickstarts/build-and-deploy) in Google Cloud Run (e.g. `nextjs-docker`). Ensure billing is turned on.
-1. Build your container image using Cloud Build: `gcloud builds submit --tag gcr.io/PROJECT-ID/helloworld --project PROJECT-ID`. This will also enable Cloud Build for your project.
-1. Deploy to Cloud Run: `gcloud run deploy --image gcr.io/PROJECT-ID/helloworld --project PROJECT-ID --platform managed`. Choose a region of your choice.
+## Usage
 
-   - You will be prompted for the service name: press Enter to accept the default name, `helloworld`.
-   - You will be prompted for [region](https://cloud.google.com/run/docs/quickstarts/build-and-deploy#follow-cloud-run): select the region of your choice, for example `us-central1`.
-   - You will be prompted to **allow unauthenticated invocations**: respond `y`.
+The src directory contains the code for the NextJS front and backends
 
-Or click the button below, authorize the script, and select the project and region when prompted:
+The mongo directory contains the code for populating the database on load. Currently the database is empty.
 
-[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run/?git_repo=https://github.com/vercel/next.js.git&dir=examples/with-docker)
+MongoDB is unconfigured in this example. It is possible to configure it through the docker-compose.yml and the docker-compose-prod.yml files.
 
-## Running Locally
+- Build the development environment
 
-First, run the development server:
+  `docker-compose build`
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+- Run the containers
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+  `docker-compose up`
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- Stop the containers
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+  `docker-compose down`
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+When the development container is running, it will use port 3000, this is configurable through docker-compose.yml and /src/Dockerfile
+
+Access the environment through
+http://localhost:3000
+
+This container, for maximum compatibility includes a file .babelrc inside of src. This will disable the SWC based compiler.
+
+## Deploying
+
+**IMPORTANT**
+
+Before deploying **ANYTHING** with this boilerplate, ensure that you change the configuration of MongoDB. It is not secure in it's current configuration
+
+This boilerplate has two docker-compose files. docker-compose-prod.yml in the root directory will create and deploy a production-ready build of an app.
+
+- The production docker-compose can be used through
+
+  `docker-compose -f 'docker-compose-prod.yml' up -build`
+
+The application is running by default on Port 443, if you wish to change the port the app is running on, the docker-compose-prod.yml in combination with the Dockerfile.prod inside the src directory
