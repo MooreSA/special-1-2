@@ -1,7 +1,10 @@
-FROM mongo
+FROM node:lts-alpine
 
-WORKDIR /db
+WORKDIR /dbSeeder
 
-COPY *.js /docker-entrypoint-initdb.d/
+COPY package-*.json /dbSeeder/
+COPY . . 
 
-EXPOSE 27017
+RUN npm install
+
+CMD ["node", "dbSeeder.js"]

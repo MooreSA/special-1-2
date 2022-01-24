@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  padding-top: 5rem;
+}
+
+.contentWrap {
+  margin: 1rem 0;
+  width: 100%;
+  max-width: 768px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.para {
+  margin: 10px 0;
+  font-size: 1.2rem;
+}

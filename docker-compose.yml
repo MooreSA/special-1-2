@@ -10,23 +10,34 @@ services:
       - ./src:/app
     ports:
       - "3000:3000"
-
-  db:
-    build:
-      context: ./mongo
-      dockerfile: Dockerfile
-    restart: always
-    image: next-mongo-db
-    volumes:
-      - data-volume:/data/db
+    networks:
+      - next-network
     environment:
-      MONGO_INITDB_DATABASE: test
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGODB_URI: mongodb://mongo:27017/test
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo-db
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: dbTest
     ports:
       - "27017:27017"
     networks:
       - next-network
+
+  dbSeeder:
+    image: node:lts-alpine
+    build:
+      context: ./mongo
+      dockerfile: Dockerfile
+    container_name: next-db-seeder
+    restart: on-failure
+    volumes:
+      - ./mongo/:/dbSeeder
+    networks:
+      - next-network
+
 networks:
   next-network:
     driver: bridge

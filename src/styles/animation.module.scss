@@ -1,0 +1,29 @@
+@keyframes fade-fwd {
+  0% {
+    transform: translateZ(-80px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-bwd {
+  0% {
+    transform: translateZ(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateZ(-80px);
+    opacity: 0;
+  }
+}
+
+.fadeFwd {
+  animation: fade-fwd 1.5s both;
+}
+
+.fadeBwd {
+  animation: fade-bwd 1.5s both;
+}
