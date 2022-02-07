@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import styles from "../styles/home.module.scss";
 
 export default function Home() {
@@ -9,6 +10,11 @@ export default function Home() {
         <h2 className="headingL">NextJS</h2>
         <div className={styles.contentWrap}>
           <p className={styles.description}>I heard you liked frameworks</p>
+          <Link href="/intro/ssr-csr">
+            <a>
+              <button className={styles.button}>Get Started</button>
+            </a>
+          </Link>
         </div>
       </main>
     </div>
