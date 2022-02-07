@@ -11,7 +11,12 @@ const ServerSide = ({ data }) => {
       <h1 className="headingXL">Server Side Rendering</h1>
       <h2 className="headingL">Still Kinda Fast</h2>
       <div className={styles.contentWrap}>
-        <div className={styles.para}></div>
+        <div className={styles.para}>
+          Name: {data.name != null ? data.name : null}
+        </div>
+        <Link href="/example/">
+          <button className="btn btn-black">Another Example</button>
+        </Link>
       </div>
     </div>
   );
