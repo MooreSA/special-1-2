@@ -11,8 +11,10 @@ const ServerSide = ({ data }) => {
       <h1 className="headingXL">Server Side Rendering</h1>
       <h2 className="headingL">Still Kinda Fast</h2>
       <div className={styles.contentWrap}>
-        <div className={styles.para}></div>
+        <div className={styles.para}>This is static!</div>
       </div>
     </div>
   );
 };
+
+export default ServerSide;
