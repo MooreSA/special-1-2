@@ -13,6 +13,10 @@ const ServerSide = ({ data }) => {
       <div className={styles.contentWrap}>
         <div className={styles.para}>
           Name: {data.name != null ? data.name : null}
+          <br />
+          Location: {data.location != null ? data.location : null}
+          <br />
+          URL: {data.url != null ? data.url : null}
         </div>
         <Link href="/example/">
           <button className="btn btn-black">Another Example</button>
