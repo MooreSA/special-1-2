@@ -1,5 +1,4 @@
 import styles from "../../styles/ssr-csr.module.scss";
-import Link from "next/link";
 
 const Solutions = () => {
   return (
@@ -26,9 +25,6 @@ const Solutions = () => {
         <li>Help/Documentation Pages</li>
         <li>E-Commerce Product Pages</li>
       </ul>
-      <Link href="/intro/dynamic-content">
-        <button className="btn btn-black">What About Dynamic Content</button>
-      </Link>
     </div>
   );
 };

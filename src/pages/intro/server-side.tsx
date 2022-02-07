@@ -11,29 +11,8 @@ const ServerSide = ({ data }) => {
       <h1 className="headingXL">Server Side Rendering</h1>
       <h2 className="headingL">Still Kinda Fast</h2>
       <div className={styles.contentWrap}>
-        <div className={styles.para}>
-          Name: {data.name != null ? data.name : null}
-          <br />
-          Location: {data.location != null ? data.location : null}
-          <br />
-          URL: {data.url != null ? data.url : null}
-        </div>
-        <Link href="/example/">
-          <button className="btn btn-black">Another Example</button>
-        </Link>
+        <div className={styles.para}></div>
       </div>
     </div>
   );
 };
-
-// This gets called on every request
-export const getServerSideProps = async () => {
-  // Fetch data from external API
-  const res = await fetch("https://api.github.com/users/mooresa");
-  const data = await res.json();
-
-  // Pass data to the page via props
-  return { props: { data } };
-};
-
-export default ServerSide;
