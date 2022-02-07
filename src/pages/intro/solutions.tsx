@@ -26,9 +26,6 @@ const Solutions = () => {
         <li>Help/Documentation Pages</li>
         <li>E-Commerce Product Pages</li>
       </ul>
-      <Link href="/intro/dynamic-content">
-        <button className="btn btn-black">What About Dynamic Content</button>
-      </Link>
     </div>
   );
 };

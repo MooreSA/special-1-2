@@ -16,6 +16,7 @@ const SsrCsr = () => {
   };
 
   const handleDelete = async (id: string) => {
+    // TODO: Implement delete
     return;
   };
 

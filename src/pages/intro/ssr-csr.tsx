@@ -1,18 +1,11 @@
 import Head from "next/head";
-import Link from "next/link";
 import styles from "../../styles/ssr-csr.module.scss";
 import animation from "../../styles/animation.module.scss";
 import { useState } from "react";
-import TestComponent from "../../components/testComponent";
 
 const SsrCsr = () => {
-  const [testState, setTestState] = useState<Boolean>(false);
   const [showNext, setShowNext] = useState<Boolean>(false);
 
-  const handleBtnClick = () => {
-    setTestState(!testState);
-    setShowNext(true);
-  };
   return (
     <div className={styles.container}>
       <Head>
@@ -36,11 +29,6 @@ const SsrCsr = () => {
           occurs all within a single page. There is an easier job to maintain
           state.
         </p>
-        <button onClick={handleBtnClick} className="btn btn-black">
-          Toggle the state!
-        </button>
-
-        {testState ? <TestComponent /> : null}
         {showNext ? (
           <div className={`${animation.fadeFwd} ${styles.contentWrap}`}>
             <p className={styles.para}>
@@ -64,9 +52,6 @@ const SsrCsr = () => {
                 simultaneously the initial load time may be longer than desired.
               </li>
             </ul>
-            <Link href="/intro/solutions">
-              <button className="btn btn-black">How do we fix that?</button>
-            </Link>
           </div>
         ) : null}
       </div>

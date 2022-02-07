@@ -62,11 +62,9 @@ const Form = () => {
       <h1 className="headingXL">User Form</h1>
       <h2 className="headingL text-center">Let's build our own route</h2>
       <div className={styles.contentWrap}>
-        <form className={form.formWrap}>
-          <div className={form.formGroup}>
-            <label htmlFor="name" className={form.label}>
-              Name:{" "}
-            </label>
+        <form>
+          <div>
+            <label htmlFor="name">Name: </label>
             <input
               maxLength={50}
               type="text"
@@ -74,10 +72,9 @@ const Form = () => {
               name="name"
               id="input-first"
               value={fName}
-              className={form.textInput}
             />
           </div>
-          <div className={form.formGroup}>
+          <div>
             <label htmlFor="tel" className={form.label}>
               Telephone:{" "}
             </label>
@@ -88,10 +85,9 @@ const Form = () => {
               name="tel"
               id="input-tel"
               value={tel}
-              className={form.textInput}
             />
           </div>
-          <div className={`${form.formGroup} ${form.formGroupWide}`}>
+          <div>
             <label className={form.label}>Email: </label>
             <input
               maxLength={50}
@@ -100,12 +96,11 @@ const Form = () => {
               name="email"
               id="input-email"
               value={email}
-              className={form.textInput}
             />
           </div>
-          {error ? <p className={form.error}>{error}</p> : null}
-          {success ? <p className={form.success}>{success}</p> : null}
-          <div className={`${form.formGroup} ${form.formGroupWide}`}>
+          {error ? <p>{error}</p> : null}
+          {success ? <p>{success}</p> : null}
+          <div>
             {success ? (
               <Link href="/example">
                 <a className="btn btn-black">Table</a>
